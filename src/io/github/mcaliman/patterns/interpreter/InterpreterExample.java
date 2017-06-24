@@ -21,38 +21,40 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.interpreter;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.lang.System.out;
 
 /**
  * @author Massimo Caliman
  */
-public class ClassicVisitor {
+public class InterpreterExample {
+
+    public static void example1() {
+        EvalExpr evalExpr = new EvalExpr("a b c - +");
+        Map<String, Expr> variables = new HashMap<>();
+        variables.put("a", new NumExpr(1));
+        variables.put("b", new NumExpr(1));
+        variables.put("c", new NumExpr(1));
+        int result = evalExpr.interpret(variables);
+        out.println(result);
+    }
+
+    public static void example2() {
+        String expr2 = "a b +";
+        EvalExpr evalExpr = new EvalExpr(expr2);
+        Map<String, Expr> variables = new HashMap<>();
+        variables.put("a", new NumExpr(3));
+        variables.put("b", new NumExpr(7));
+        int result = evalExpr.interpret(variables);
+        out.println(result);
+    }
 
     public static void main(String[] args) {
-        ClassicVisitor visitor = new ClassicVisitor();
-        visitor.visit(new C());
+        example1();
+        example2();
     }
-
-    public void visit(Object object) {
-        if (object instanceof A) {
-            visit(object);
-        } else if (object instanceof B) {
-            visit(object);
-        } else if (object instanceof C) {
-            visit(object);
-        }
-    }
-
-    public void visit(A object) {
-        System.out.println(object);
-    }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
-    public void visit(C object) {
-        System.out.println(object);
-    }
-
 }

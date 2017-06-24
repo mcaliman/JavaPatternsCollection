@@ -21,38 +21,46 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.interpreter;
+
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * @author Massimo Caliman
  */
-public class ClassicVisitor {
+public class EvalExpr implements Expr {
 
-    public static void main(String[] args) {
-        ClassicVisitor visitor = new ClassicVisitor();
-        visitor.visit(new C());
-    }
+    private final Expr expr;
 
-    public void visit(Object object) {
-        if (object instanceof A) {
-            visit(object);
-        } else if (object instanceof B) {
-            visit(object);
-        } else if (object instanceof C) {
-            visit(object);
+    /**
+     * @param string
+     */
+    public EvalExpr(String string) {
+        Stack<Expr> stack = new Stack<>();
+        //attenzione non rimuove spazi multipli, da implementare.
+        for (String token : string.split(" ")) {
+            switch (token) {
+                case "+":
+                    Expr addExpr = new AddExpr(stack.pop(), stack.pop());
+                    stack.push(addExpr);
+                    break;
+                case "-":
+                    Expr right = stack.pop();
+                    Expr left = stack.pop();
+                    Expr subExpr = new SubExpr(left, right);
+                    stack.push(subExpr);
+                    break;
+                default:
+                    stack.push(new VarExpr(token));
+                    break;
+            }
         }
+        this.expr = stack.pop();
     }
 
-    public void visit(A object) {
-        System.out.println(object);
+    @Override
+    public int interpret(Map<String, Expr> context) {
+        return this.expr.interpret(context);
     }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
-    public void visit(C object) {
-        System.out.println(object);
-    }
-
 }

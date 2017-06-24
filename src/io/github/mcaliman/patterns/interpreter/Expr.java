@@ -21,38 +21,14 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.interpreter;
+
+import java.util.Map;
 
 /**
  * @author Massimo Caliman
  */
-public class ClassicVisitor {
+public interface Expr {
 
-    public static void main(String[] args) {
-        ClassicVisitor visitor = new ClassicVisitor();
-        visitor.visit(new C());
-    }
-
-    public void visit(Object object) {
-        if (object instanceof A) {
-            visit(object);
-        } else if (object instanceof B) {
-            visit(object);
-        } else if (object instanceof C) {
-            visit(object);
-        }
-    }
-
-    public void visit(A object) {
-        System.out.println(object);
-    }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
-    public void visit(C object) {
-        System.out.println(object);
-    }
-
+    int interpret(Map<String, Expr> variables);
 }

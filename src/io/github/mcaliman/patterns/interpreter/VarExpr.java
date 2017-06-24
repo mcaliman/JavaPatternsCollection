@@ -21,38 +21,32 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.interpreter;
+
+import java.util.Map;
 
 /**
+ * Variable
+ *
  * @author Massimo Caliman
  */
-public class ClassicVisitor {
+public class VarExpr implements Expr {
 
-    public static void main(String[] args) {
-        ClassicVisitor visitor = new ClassicVisitor();
-        visitor.visit(new C());
+    private final String name;
+
+    public VarExpr(String name) {
+        this.name = name;
     }
 
-    public void visit(Object object) {
-        if (object instanceof A) {
-            visit(object);
-        } else if (object instanceof B) {
-            visit(object);
-        } else if (object instanceof C) {
-            visit(object);
+    /**
+     * @param vars
+     * @return
+     */
+    @Override
+    public int interpret(Map<String, Expr> vars) {
+        if (vars.get(name) == null) {
+            return 0;
         }
+        return vars.get(name).interpret(vars);
     }
-
-    public void visit(A object) {
-        System.out.println(object);
-    }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
-    public void visit(C object) {
-        System.out.println(object);
-    }
-
 }

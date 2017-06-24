@@ -21,38 +21,29 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.interpreter;
+
+import java.util.Map;
 
 /**
+ * NumExpr is a Number
+ *
  * @author Massimo Caliman
  */
-public class ClassicVisitor {
+public class NumExpr implements Expr {
 
-    public static void main(String[] args) {
-        ClassicVisitor visitor = new ClassicVisitor();
-        visitor.visit(new C());
+    private final int number;
+
+    public NumExpr(int number) {
+        this.number = number;
     }
 
-    public void visit(Object object) {
-        if (object instanceof A) {
-            visit(object);
-        } else if (object instanceof B) {
-            visit(object);
-        } else if (object instanceof C) {
-            visit(object);
-        }
+    /**
+     * @param vars
+     * @return
+     */
+    @Override
+    public int interpret(Map<String, Expr> vars) {
+        return this.number;
     }
-
-    public void visit(A object) {
-        System.out.println(object);
-    }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
-    public void visit(C object) {
-        System.out.println(object);
-    }
-
 }
