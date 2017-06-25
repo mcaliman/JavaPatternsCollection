@@ -1,6 +1,5 @@
 # JavaPatternsCollection
-Yet another collection of Java Design Patterns
-
+A collection of design patterns which I have implement for studying purposes over the years.  
 This repository contains code samples from the related posts of my blog
 I'm adding new samples from time to time.
 
