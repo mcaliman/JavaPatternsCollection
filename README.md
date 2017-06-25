@@ -9,6 +9,7 @@ I'm adding new samples from time to time.
 5. Singleton (EagerInitialization,as Enum,LazyInitialization,StaticBlockInitialization,ThreadSafe)
 6. State 
 7. Strategy
+8. Visitor
 
 # Contribute
 
