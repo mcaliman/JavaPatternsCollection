@@ -1,7 +1,7 @@
 /*
  The MIT License (MIT)
 
- Copyright (c) 2017 Massimo Caliman
+ Copyright (c) 2015 Massimo Caliman
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,38 +21,42 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example2;
 
 /**
+ * Se un handler giusto viene trovato non si ferma nella catena ma prosegue
+ * comunque per vedere se ci sono altri handler che possono trattare l'oggetto.
+ * L'ordine seguito è quello di aggiuta degli Handler
+ * <p>
+ * Chain seq. do not stop if match property.
+ * <p>
+ * TODO FIX: problems if properties A,B,C (more than 2)
+ *
  * @author Massimo Caliman
  */
-public class ClassicVisitor {
+public class Client {
+
+    private EntryProcessor proc;
+
+    public Client() {
+        proc = new EntryProcessor();
+        proc.addHandler(new AHandler());
+        proc.addHandler(new BHandler());
+    }
 
     public static void main(String[] args) {
-        ClassicVisitor visitor = new ClassicVisitor();
-        visitor.visit(new C());
+
+        Entry e = new Entry();
+        e.setName("Object with property B and A");
+        e.setPropertyA(true);
+        e.setPropertyB(true);
+
+        Client client = new Client();
+        client.handle(e);
+
     }
 
-    public void visit(Object object) {
-        if (object instanceof A) {
-            visit(object);
-        } else if (object instanceof B) {
-            visit(object);
-        } else if (object instanceof C) {
-            visit(object);
-        }
+    public void handle(Entry e) {
+        proc.handleRequest(e);
     }
-
-    public void visit(A object) {
-        System.out.println(object);
-    }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
-    public void visit(C object) {
-        System.out.println(object);
-    }
-
 }

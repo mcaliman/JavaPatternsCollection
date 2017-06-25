@@ -1,7 +1,7 @@
 /*
  The MIT License (MIT)
 
- Copyright (c) 2017 Massimo Caliman
+ Copyright (c) 2015 Massimo Caliman
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,32 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example1;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Massimo Caliman
  */
-public class C {
+public class BHandler implements Handler {
 
-    public C() {
+    private static final Logger LOG = Logger.getLogger(BHandler.class.getName());
+
+    private Handler next;
+
+    @Override
+    public void next(Handler handler) {
+        next = handler;
     }
 
     @Override
-    public String toString() {
-        return "C{" + '}';
+    public void handleRequest(Entry e) {
+        if (!e.isPropertyB()) {
+            next.handleRequest(e);
+        } else {
+            //handle request
+            LOG.log(Level.INFO, "> {0} : call BHandler ", e.toString());
+        }
     }
-
 }

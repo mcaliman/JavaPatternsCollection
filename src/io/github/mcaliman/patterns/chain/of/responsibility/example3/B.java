@@ -21,15 +21,19 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example3;
 
 /**
  * @author Massimo Caliman
  */
-public abstract class Handler {
+public class B {
 
-    public Handler nexthandler;
+    public B() {
+    }
 
-    public abstract void handle(Object object);
+    @Override
+    public String toString() {
+        return "B{" + '}';
+    }
 
 }

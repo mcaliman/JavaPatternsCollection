@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example3;
 
 
 /**

@@ -21,13 +21,13 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example3;
 
 
 /**
  * @author Massimo Caliman
  */
-public class CHandler extends Handler {
+public class BHandler extends Handler {
 
     public void handle(Object object) {
         if (object instanceof B) {

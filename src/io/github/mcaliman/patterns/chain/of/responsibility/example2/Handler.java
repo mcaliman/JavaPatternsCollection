@@ -1,7 +1,7 @@
 /*
  The MIT License (MIT)
 
- Copyright (c) 2017 Massimo Caliman
+ Copyright (c) 2015 Massimo Caliman
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,20 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example2;
 
 /**
  * @author Massimo Caliman
  */
-public class B {
+public interface Handler {
 
-    public B() {
-    }
+    /**
+     * reference to the next handler in the chain
+     */
+    void next(Handler h);
 
-    @Override
-    public String toString() {
-        return "B{" + '}';
-    }
-
+    /**
+     * handle request
+     */
+    void handleRequest(Entry e);
 }

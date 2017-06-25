@@ -1,7 +1,7 @@
 /*
  The MIT License (MIT)
 
- Copyright (c) 2017 Massimo Caliman
+ Copyright (c) 2015 Massimo Caliman
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,26 +21,35 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
+package io.github.mcaliman.patterns.chain.of.responsibility.example2;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Massimo Caliman
  */
-public class BHandler extends Handler {
+public class AHandler implements Handler {
 
-    public void handle(Object object) {
-        if (object instanceof B) {
-            visit((B) object);
-        } else {
-            if (nexthandler != null) {
-                nexthandler.handle(object);
-            }
+    private static final Logger LOG = Logger.getLogger(AHandler.class.getName());
+
+    private Handler next;
+
+    @Override
+    public void next(Handler handler) {
+        next = handler;
+    }
+
+    @Override
+    public void handleRequest(Entry e) {
+        if (e.isPropertyA()) {
+            //Fai qualcosa con l'oggetto perchè ha la proprietà A e l'handler sa come trattarlo            
+            //Stuff..
+            LOG.log(Level.INFO, "> {0} : call AHandler ", e.toString());
+        }
+        //Prosegue nella catena
+        if (next != null) {
+            next.handleRequest(e);
         }
     }
-
-    public void visit(B object) {
-        System.out.println(object);
-    }
-
 }

@@ -21,27 +21,19 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package io.github.mcaliman.patterns.chain.of.responsibility;
-
+package io.github.mcaliman.patterns.chain.of.responsibility.example3;
 
 /**
  * @author Massimo Caliman
  */
-public class AHandler extends Handler {
+public class C {
 
-    public void handle(Object object) {
-        if (object instanceof A) {
-            visit((A) object);
-        } else {
-            if (nexthandler != null) {
-                System.out.println("nexthandler");
-                nexthandler.handle(object);
-            }
-        }
+    public C() {
     }
 
-    public void visit(A object) {
-        System.out.println(object);
+    @Override
+    public String toString() {
+        return "C{" + '}';
     }
 
 }
