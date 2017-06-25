@@ -8,6 +8,7 @@ I'm adding new samples from time to time.
 4. Interpreter Pattern Java Examples
 5. Singleton (EagerInitialization,as Enum,LazyInitialization,StaticBlockInitialization,ThreadSafe)
 6. State 
+7. Strategy
 
 # Contribute
 
