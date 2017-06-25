@@ -8,6 +8,7 @@ I'm adding new samples from time to time.
 2. Chain Of Responsibility (COF) Pattern Java Examples 2
 3. Chain Of Responsibility (COF) Pattern Java Examples 3 
 4. Interpreter Pattern Java Examples
+5. Singleton (EagerInitialization,as Enum,LazyInitialization,StaticBlockInitialization,ThreadSafe)
 
 # Contribute
 
