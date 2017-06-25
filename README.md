@@ -1,6 +1,5 @@
 # JavaPatternsCollection
 A collection of design patterns which I have implement for studying purposes over the years.  
-This repository contains code samples from the related posts of my blog
 I'm adding new samples from time to time.
 
 1. Chain Of Responsibility (COF) Pattern Java Examples 1
